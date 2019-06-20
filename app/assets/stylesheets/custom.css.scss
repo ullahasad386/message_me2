@@ -1,0 +1,56 @@
+@import "semantic-ui";
+
+
+.chatbox {
+  height: 450px;
+}
+
+#messages {
+  height: 15em;
+  overflow: auto;
+}
+
+.input {
+  button{
+    display: none;
+  }
+}
+
+.pagination {
+  width: 100%;
+}
+
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
+}
+
+
+footer {
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}

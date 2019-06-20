@@ -1,0 +1,59 @@
+
+<div align="center">
+<h1 align="center">All MessageMe Users</h1>
+
+
+<div class="pagination apple_pagination">
+<%= will_paginate %>
+</div>
+<br>
+
+
+<% @users.each do |user| %>
+<div class="ui special centered cards">
+  <div class="card">
+    <div class="blurring dimmable image">
+      <div class="ui dimmer">
+        <div class="content">
+          <div class="center">
+            <div class="ui inverted button">
+                <% if current_user.not_friends_with?(user.id) %>
+                <%= link_to "Add friend",
+                    add_friend_path(user: current_user, friend: user), method: :post %>
+      
+              <% else %>
+              <span>
+                You are friends
+              </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+        <% if user.avatar.attached? %>
+        <image src="<%=(url_for(user.avatar))%>">
+        <% else %>
+        <%=  image_tag ("blank-profile-picture-973460_960_720.png") %>
+        <% end %>
+    </div>
+    <div class="content">
+      <%= link_to user.username, user_path(user) %>
+      <div class="meta">
+        <span class="date"> Joined
+        <%= time_ago_in_words(user.created_at) %> ago</span>
+      </div>
+    </div>
+    <div class="extra content">
+      <%= link_to "View Profile", user_path(user), class: "ui orange button"  %>
+    </div>
+  </div>
+
+</div>
+<% end %>
+</div>
+<br>
+
+<div class="pagination apple_pagination">
+<%= will_paginate %>
+</div>
+<br>

@@ -1,0 +1,52 @@
+<h4 class="ui center aligned medium icon header">
+  <i class="circular orange coffee icon"></i>
+  Say Something
+</h4>
+
+
+<div class="ui two column grid">
+  <div class="twelve wide column">
+    <div class="ui fluid raised card chatbox">
+  <div class="content" id="messages">
+<div class="ui feed" id="message-container">
+<%= render @messages %>
+</div>
+</div>
+<div class="extra content">
+  <%= form_for(@message, html: {class: "ui reply form", role: "form"}, url: message_path, remote: true) do |f| %>
+
+<div class="field">
+  <div class="ui fluid icon input">
+    <%= f.text_field :body, placeholder: "Say something..." %>
+    <%= f.button '<i class="bordered inverted orange edit icon"></i>' .html_safe %>
+  </div>
+</div>
+
+<% end %>
+
+</div>
+</div>
+</div>
+
+
+<div class="four wide column">
+  <div class="ui fluid raised card chatbox">
+  <div class="content">
+<div class="ui inverted vertical menu">
+  <a class="active item">
+    Friends
+  </a>
+  <% if current_user.friendships.size > 0 %>
+    <% current_user.friends.each do |user| %>
+  <a class="item">
+     <%= user.username %>
+  </a>
+  <% end %>
+  <% else %>
+  <h3 align='center' style="color:white;">Don't have any friends? Add some <%= link_to "here", my_friends_path %>.</h3>
+  <% end %>
+</div>
+</div>
+</div>
+</div>
+</div>

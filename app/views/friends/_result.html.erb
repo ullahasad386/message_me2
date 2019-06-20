@@ -1,0 +1,30 @@
+<% if params[:action] == 'search' %>
+  <div class="results-block">
+    <%= semantic_flash %>
+  </div>
+<% end %>
+<br>
+<% if @users %>
+<% if @users.size > 0 %>
+  <div id="friend-lookup-results">
+<table class="ui selectable inverted table">
+  <thead>
+    <% @users.each do |user| %>
+    <tr>
+      <td><strong>Name:</strong> <%= user.username %></td>
+      <td><strong>Profile:</strong> <%= link_to "View Profile", user_path(user), class: "ui orange submit button" %>
+        <% if current_user.not_friends_with?(user.id) %>
+          <%= link_to "Add as my friend",
+                  add_friend_path(user: current_user, friend: user), class: "ui orange submit button", method: :post %>
+        <% else %>
+        <span>
+          You are friends
+        </span>
+        <% end %>
+        <% end %>
+    </tr>
+  </thead>
+</table>
+</div>
+<% end %>
+<% end %>
