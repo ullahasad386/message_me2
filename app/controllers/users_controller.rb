@@ -48,11 +48,12 @@ end
   def add_friend
     @friend = User.find(params[:friend])
     current_user.friendships.build(friend_id: @friend.id)
-
-    if current_user.save
+    if current_user.save && current_user.id != @friend.id
       flash[:success] = "Friend was successfully added."
     else
-      flash[:danger] = "There was something wrong with the friend request."
+      flash[:danger] = "You cannot add yourself as a friend."
+      @friendship = current_user.friendships.where(friend_id: params[:id]).first
+      @friendship.destroy
     end
     redirect_to my_friends_path
   end
