@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Welcome to the MessageMe app #{@user.username}"
-      redirect_to chatroom_path(@user)
+      redirect_to user_path(@user)
     else
       render 'new'
     end

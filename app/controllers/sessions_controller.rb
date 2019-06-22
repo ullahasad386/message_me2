@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       flash[:success] = "You've successfully logged in"
-      redirect_to chatroom_path
+      redirect_to user_path(user)
     else
       flash.now[:error] = "There was something wrong with your login information"
       render 'new'

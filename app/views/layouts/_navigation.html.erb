@@ -3,6 +3,7 @@
 <div class="right menu">
   <% if logged_in? %>
   <%= link_to "My Friends", my_friends_path, class: "item" %>
+  <%= link_to  current_user.username, user_path(current_user), class: "item" %>
   <% end %>
   <div class="ui dropdown item">
     Account <i class="dropdown icon"></i>
